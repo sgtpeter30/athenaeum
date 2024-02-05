@@ -1,0 +1,7 @@
+<form [formGroup]="formName">
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>{{field.label}}</mat-label>
+    <input matInput [formControlName]="field.name" [type]="field.type">
+    <mat-error>{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</form>

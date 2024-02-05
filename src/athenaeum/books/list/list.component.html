@@ -1,0 +1,46 @@
+<mat-form-field>
+  <mat-label>Filtruj</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Znajdź po" #input>
+</mat-form-field>
+
+<table mat-table
+       [dataSource]="dataSource" 
+       multiTemplateDataRows
+       matSort
+       (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+  @for (column of columnsToDisplay; track column) {
+    <ng-container matColumnDef="{{column.value}}">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > {{column.label}} </th>
+      <td mat-cell *matCellDef="let element" (click)="expandElement(element, $event)">
+        {{element[column.value]}}
+      </td>
+    </ng-container>
+  }
+  
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">Edytuj</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="edit row" (click)="editRow(element)">
+        <mat-icon color="primary">edit_square</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <app-list-book-form [book]="element" [isInEdit]="element.isInEdit"></app-list-book-form>
+      </div>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="element-row"
+      [class.expanded-row]="expandedElement === element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>

@@ -1,0 +1,28 @@
+export interface Book
+{
+  _id : number | null,
+  title : string,
+  author : String,
+  series : String,
+  volume : Number,
+  publisher : String,
+  edition : Number,
+  isbn : Number,
+  translation : String,
+  orgLang : String,
+  orgTitle : String,
+  ilustrations : String,
+  type : [],
+  cover : String,
+  pages : Number,
+  size : String,
+  favourite: Boolean,
+  read: Boolean,
+  wishlist: Boolean,
+  priceOrg: String,
+  price: String,
+  rating : Number,
+  myTag : [],
+  decription : String,
+  comment: string
+}

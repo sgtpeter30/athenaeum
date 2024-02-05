@@ -1,0 +1,41 @@
+<section id="logins">
+  <div class="accordion-wrapper">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>account_circle</mat-icon> Zaloguj się
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <app-login-form></app-login-form>
+    
+      </mat-expansion-panel>
+
+      <h3>Wybierasz inne metody logowania?</h3>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zarejestruj konto
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <app-register-form></app-register-form>
+
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel disabled>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Korzystaj bez logowania
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <button mat-raised-button color="primary" class="w-100" (click)="accordion.openAll()">Otwórz listę</button>
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</section>

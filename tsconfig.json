@@ -22,7 +22,11 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@lib/shared": [ "src/shared" ],
+    }
+    // "paths": {"@lib/shared": ["src/app/shared/index"]}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

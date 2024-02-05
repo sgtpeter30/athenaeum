@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "athenaeum:build:production"
+              "buildTarget": "athenaeum:build:production"
             },
             "development": {
-              "browserTarget": "athenaeum:build:development"
+              "buildTarget": "athenaeum:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "athenaeum:build"
+            "buildTarget": "athenaeum:build"
           }
         },
         "test": {

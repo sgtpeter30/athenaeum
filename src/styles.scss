@@ -1,1 +1,221 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$theme-primary: (
+  100: #FFF9C4,
+  200: #FFF59D,
+  300: #FFF176,
+  400: #FFEE58,
+  500: #FFEB3B,
+  600: #FDD835,
+  700: #FBC02D,
+  800: #F9A825,
+  900: #F57F17,
+  A100: #FFFF8D,
+  A200: #FFFF00,
+  A400: #FFEA00,
+  A700: #FFD600,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+// $theme-primary: (
+//   100: #f9e5b6,
+//   200: #f6d486,
+//   300: #f2c356,
+//   400: #efb631,
+//   50: #fdf5e2,
+//   500: #eca90d,
+//   600: #eaa20b,
+//   700: #e79809,
+//   800: #e48f07,
+//   900: #df7e03,
+//   A100: #fff4de,
+//   A200: #ffe3ab,
+//   A400: #ffd378,
+//   A700: #ffca5e,
+//   contrast: (
+//     50 : #000000,
+//     100 : #000000,
+//     200 : #000000,
+//     300 : #ffffff,
+//     400 : #ffffff,
+//     500 : #ffffff,
+//     600 : #ffffff,
+//     700 : #ffffff,
+//     800 : #ffffff,
+//     900 : #ffffff,
+//     A100 : #000000,
+//     A200 : #ffffff,
+//     A400 : #ffffff,
+//     A700 : #ffffff,
+//   )
+// );
+
+$theme-warn: (
+  100: #d1b3b3,
+  200: #b38080,
+  300: #944d4d,
+  400: #7d2626,
+  50: #ede0e0,
+  500: #660000,
+  600: #5e0000,
+  700: #530000,
+  800: #490000,
+  900: #380000,
+  A100: #ff4646,
+  A200: #ff1313,
+  A400: #df0000,
+  A700: #c50000,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$theme-accent: (
+  100: #c3fbf5,
+  200: #9cf8ef,
+  300: #74f5e9,
+  400: #56f3e4,
+  50: #e7fdfb,
+  500: #38f1df,
+  600: #32efdb,
+  700: #2bedd7,
+  800: #24ebd2,
+  900: #17e7ca,
+  A100: #ffffff,
+  A200: #d7fffb,
+  A400: #a4fff5,
+  A700: #8afff3,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$athenaeum-primary: mat.define-palette($theme-primary, 700);
+$athenaeum-accent: mat.define-palette($theme-accent, 500, 900, A100);
+
+// The warn palette is optional (defaults to red).
+$athenaeum-warn: mat.define-palette($theme-warn, A100);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$athenaeum-theme: mat.define-dark-theme((
+  color: (
+    primary: $athenaeum-primary,
+    accent: $athenaeum-accent,
+    warn: $athenaeum-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($athenaeum-theme);
+
+@mixin generateColors($prefix, $palette) {
+  $colors-map: ();
+
+  @each $key, $value in $palette {
+    @if $key !=contrast {
+      .app-#{$prefix}-#{$key} {
+        color: map-get($palette, $key);
+      }
+
+    $map: ();
+    $map: map-merge($map, ($key: $value));
+    $colors-map: map-merge($colors-map, $map);
+    }
+  }
+
+  :root {
+    @each $key, $value in $colors-map {
+      --app-#{$prefix}-#{$key}: #{$value};
+    }
+  }
+}
+@mixin generate-material-classes {
+  @include generateColors(primary, $athenaeum-primary);
+  @include generateColors(accent, $athenaeum-accent);
+  @include generateColors(warning, $athenaeum-warn);
+}
+@include generate-material-classes();
+
 /* You can add global styles to this file, and also import other style files */
+html{
+  font-size: 10px;
+}
+body{
+  font-size: 1.6rem;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$primary-default: mat.get-theme-color($athenaeum-theme, primary, default);
+$secondary-default: mat.get-theme-color($athenaeum-theme, accent, default);
+$warn-default: mat.get-theme-color($athenaeum-theme, warn, default);
+
+.error-snack{
+  .mdc-snackbar__surface{
+    // background-color: $primary-default !important;
+    background-color: $warn-default !important;
+    .mdc-snackbar__label{
+      text-align: center;
+      color: var(--mat-option-label-text-color) !important;
+    }
+  }
+}
+
+.mat-mdc-form-field-error{
+  white-space: preserve;
+}

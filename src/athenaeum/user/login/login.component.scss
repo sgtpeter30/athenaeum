@@ -1,0 +1,21 @@
+app-login{
+  #logins{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15rem;
+    .accordion-wrapper{
+      max-width: 40rem;
+    }
+    .mat-expansion-panel-body, 
+    .mat-expansion-panel-body form{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      button{
+        width: 100%;
+        width: 180px;
+      }
+    }
+  }
+}
