@@ -46,6 +46,7 @@ export class BooksService {
       bookList = JSON.parse(bookListString);
       this.bookList.update(()=>bookList);
     }else{
+      // todo check if nessessery? (for now only if session doesn't expire)
       this.getBooksFromServer()
     }
     return bookList
