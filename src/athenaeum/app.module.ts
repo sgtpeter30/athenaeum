@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptorService } from 'src/shared/services/user-based/auth-interceptor.service';
+import { AuthInterceptorService } from '@lib/shared';
 
 export const environment = {
   apiUrl: "http://localhost:3200"

@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { InputFieldComponent, LiveFormComponent, LiveFormModel, PasswordValidator, UserService } from '@lib/shared';
-import { LiveFormBuilder } from 'src/shared/components/live-form/life-form-builder.class';
+import { InputFieldComponent, LiveFormComponent, LiveFormModel, PasswordValidator, UserService, LiveFormBuilder } from '@lib/shared';
 
 @Component({
   selector: 'app-register-form',

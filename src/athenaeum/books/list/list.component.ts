@@ -1,7 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,8 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Book } from '@lib/shared';
-import { BooksService } from 'src/shared/services/items/books.service';
 import { ListBookFormComponent } from "./list-book-form/list-book-form.component";
+import { BooksService } from 'shared/services/items/books.service';
 
 @Component({
     selector: 'app-list',

@@ -24,9 +24,9 @@
       "dom"
     ],
     "paths": {
-      "@lib/shared": [ "src/shared" ],
+      "@lib/shared": [ "shared" ],
     }
-    // "paths": {"@lib/shared": ["src/app/shared/index"]}
+    // "paths": {"@lib/shared": ["shared/index"]}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

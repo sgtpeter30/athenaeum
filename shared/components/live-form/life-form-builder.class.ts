@@ -1,5 +1,5 @@
 import { FormBuilder } from "@angular/forms";
-import { LiveFormTypes, LiveFormControl, LiveFormControlConverted, LiveFormGroupModel, LiveFormGroup } from "src/shared/models/live-form.model";
+import { LiveFormTypes, LiveFormControl, LiveFormControlConverted, LiveFormGroupModel, LiveFormGroup } from "@lib/shared";
 
 export class LiveFormBuilder{
 

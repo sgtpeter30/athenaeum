@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CommonErrorMessage } from 'src/shared/validators';
+import { CommonErrorMessage } from '@lib/shared';
 
 @Component({
   selector: 'app-input-field',
