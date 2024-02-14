@@ -1,6 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,13 +25,14 @@ import { ListBookFormComponent } from "./list-book-form/list-book-form.component
         ]),
     ],
     imports: [
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        ListBookFormComponent,
+      CommonModule,
+      MatTableModule,
+      MatSortModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      MatIconModule,
+      ListBookFormComponent,
     ]
 })
 export class ListComponent implements AfterViewInit {
@@ -74,7 +76,10 @@ export class ListComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  expandElement(element: any, $event: Event){
+  expandElement(element: any, $event: Event, column: any){
+    console.log(element);
+    console.log(column);
+    
     this.expandedElement = this.expandedElement === element ? null : element;
     $event.stopPropagation()
   }
