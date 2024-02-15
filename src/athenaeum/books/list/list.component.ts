@@ -35,7 +35,7 @@ import { ListBookFormComponent } from "./list-book-form/list-book-form.component
       ListBookFormComponent,
     ]
 })
-export class ListComponent implements AfterViewInit {
+export class ListComponent {
   dataSource!: MatTableDataSource<Book>
   // todo redesign
   columnsToDisplayBase = ['title', 'author'];
@@ -62,24 +62,20 @@ export class ListComponent implements AfterViewInit {
   ){
     booksService.getBooksList().subscribe(bookList =>{
       this.dataSource = new MatTableDataSource(bookList);
+      console.log(bookList);
+      
+      this.dataSource.sort = this.sort;
     })
   }
 
   @ViewChild(MatSort) sort!: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  expandElement(element: any, $event: Event, column: any){
-    console.log(element);
-    console.log(column);
-    
+  expandElement(element: any, $event: Event){
     this.expandedElement = this.expandedElement === element ? null : element;
     $event.stopPropagation()
   }
