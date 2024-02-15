@@ -28,6 +28,7 @@ export class UserService {
   };
   
   getCacheToken(): string | null{
+    // todo change to real cache
     const sessionToken = sessionStorage.getItem('token');
     return sessionToken ? sessionToken : null
   }

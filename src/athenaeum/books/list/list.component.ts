@@ -11,6 +11,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Book } from '@lib/shared';
 import { BooksService } from 'src/shared/services/items/books.service';
 import { ListBookFormComponent } from "./list-book-form/list-book-form.component";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-list',
@@ -58,6 +59,7 @@ export class ListComponent implements AfterViewInit {
   constructor(
     private booksService : BooksService,
     private _liveAnnouncer: LiveAnnouncer,
+    private router: Router,
   ){
     booksService.getBooksList().subscribe(bookList =>{
       this.dataSource = new MatTableDataSource(bookList);
@@ -93,8 +95,12 @@ export class ListComponent implements AfterViewInit {
     }
   }
 
-  editRow = (element: Book & {isInEdit: boolean})=>{
+  editRow(element: Book & {isInEdit: boolean}){
     this.expandedElement = element
     element.isInEdit = true;
+  }
+
+  goHome(){
+    this.router.navigate(["/home"]);
   }
 }

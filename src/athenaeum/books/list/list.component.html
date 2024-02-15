@@ -3,6 +3,8 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Znajdź po" #input>
 </mat-form-field>
 
+<button mat-raised-button color="primary" class="w-100" (click)="goHome()">Go home</button>
+
 <table mat-table
        [dataSource]="dataSource" 
        multiTemplateDataRows

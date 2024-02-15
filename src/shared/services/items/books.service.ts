@@ -35,39 +35,15 @@ export class BooksService {
     })
   }
 
-  cacheList(bookList: Book[]){
-    sessionStorage.setItem('bookList', JSON.stringify(bookList))
-  }
-  
-  getCachedList(){
-    const bookListString = sessionStorage.getItem('bookList')
-    let bookList: Book[] = []
-    if(bookListString){
-      bookList = JSON.parse(bookListString);
-      this.bookList.update(()=>bookList);
-    }else{
-      // todo check if nessessery? (for now only if session doesn't expire)
-      this.getBooksFromServer()
-    }
-    return bookList
-  }
-
   updateBooksList(booksList: Book[]){
-    this.cacheList(booksList)
     this.bookList.update(()=> booksList)
   }
 
   getCurrentBooksList(): Book[] {
-    if(isEmpty(this.bookList())){
-      return this.getCachedList()
-    }
     return this.bookList()
   }
 
   getBooksList(): Observable<Book[]> {
-    if(isEmpty(this.bookList())){
-      this.getCachedList()
-    }
     return this.bookList$
   }
 }
