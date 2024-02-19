@@ -81,6 +81,7 @@ export class LiveFormComponent implements OnInit, OnChanges{
       emitEvent: false,
     })
   }
+
   public setEnabled(): void {
     this.form?.enable({
       emitEvent: false,
@@ -98,6 +99,7 @@ export class LiveFormComponent implements OnInit, OnChanges{
         label: item.label, 
         component: item.component,
         type: item.inputType ?? 'text',
+        data: item.data,
       })
       if(item.disabled){
         item.formItem.disable()

@@ -19,7 +19,7 @@ export interface LiveFormGroupModel{
   [name: string]: any
 }
 export type LiveFormGroup<T> = {
-  [name in keyof T | string]: LiveFormControlConverted;
+  [name in keyof T]: LiveFormControlConverted;
 };
 // todo add array handling
 // export interface LiveFormArray<T = any>{
@@ -28,10 +28,12 @@ export type LiveFormGroup<T> = {
 // }
 
 export interface FormBaseModel{
+  component: any;
+  data?: any;
   label?: string;
   disabled?: boolean;
-  inputType?: string,
-  component: any;
+  hidden?: boolean;
+  inputType?: string;
 }
 
 export interface LiveFormControl extends FormBaseModel{

@@ -15,7 +15,9 @@ export class LiveFormBuilder{
       label: data.label,
       component: data.component,
       inputType: data?.inputType,
+      data: data?.data,
       disabled: data?.disabled,
+      hidden: data?.hidden,
       formItem: this.fb.control(data?.value, {validators: data?.validators})
     }
   }

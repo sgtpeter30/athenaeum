@@ -13,7 +13,13 @@ export class BooksService {
   private bookList = signal<Book[]>([])
   bookList$ = toObservable(this.bookList)
   
-  url: string = 'api/books';
+  private book = signal<Book | {}>({})
+  book$ = toObservable(this.book)
+  
+  urls = {
+    list: 'api/books',
+    getByISBN: 'api/getByISBN'
+  };
 
   constructor(
     private http: HttpClient,
@@ -21,7 +27,7 @@ export class BooksService {
   ) { }
 
   getBooksFromServer(){
-    lastValueFrom(this.http.get<Book[]>(this.url))
+    lastValueFrom(this.http.get<Book[]>(this.urls.list))
     .then((list) => {
       return this.updateBooksList(list)
     })
@@ -45,6 +51,15 @@ export class BooksService {
 
   getBooksList(): Observable<Book[]> {
     return this.bookList$
+  }
+
+
+  searchByISBN(isbn: string){
+    lastValueFrom(this.http.get<Book>(this.urls.getByISBN))
+      .then((response: Book) => {
+        this.book.update(()=> response)
+      })
+    
   }
 }
 

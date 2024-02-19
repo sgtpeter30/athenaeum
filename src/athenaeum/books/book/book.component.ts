@@ -1,30 +1,155 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BrowserMultiFormatReader } from '@zxing/library';
+import { CommonModule } from '@angular/common';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { Validators } from '@angular/forms';
+import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, IsbnReaderComponent, Book, ImageFieldComponent } from '@lib/shared';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatInputModule,
+    LiveFormComponent
+  ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss'
 })
 export class BookComponent {
-  @ViewChild('video') video!: ElementRef;
-  private codeReader!: BrowserMultiFormatReader;
+  showBookLoader: boolean = false
 
-  ngAfterViewInit() {
-    this.codeReader = new BrowserMultiFormatReader();
-    this.codeReader.listVideoInputDevices().then((videoInputDevices) => {
-      console.log('Available video input devices: ', videoInputDevices);
-    });
+  lfb: LiveFormBuilder = new LiveFormBuilder()
+  bookLiveForm!: LiveFormModel
+  @ViewChild('bookForm') bookForm!: LiveFormComponent
 
-  //   this.codeReader.decodeFromVideoDevice(, 'video')
-  //     .then((result: Result) => {
-  //       console.log('Result: ', result.text);
-  //       this.codeReader.reset();
-  //     })
-  //     .catch((err) => {
-  //       console.error('Error: ', err);
-  //     });
+  constructor(
+    private userService : UserService,
+  ){}
+
+  ngOnInit(): void {
+    this.bookLiveForm = ({
+      name: 'bookForm',
+      group: this.lfb.group<Partial<Book>>({
+        _id: this.lfb.controls({
+          component: InputFieldComponent,
+          hidden: true,
+          disabled: true,
+        }),
+        isbn: this.lfb.controls({
+          component: IsbnReaderComponent,
+          data: {},
+          label: 'ISBN'
+        }),
+        title: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Tytuł'
+        }),
+        cover: this.lfb.controls({
+          component: ImageFieldComponent,
+        }),
+        author: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Autor'
+        }),
+        decription: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Opis'
+        }),
+        edition: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Edycja'
+        }),
+        orgLang: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Język orginału'
+        }),
+        orgTitle: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Tytuł orginału',
+        }),
+        size: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Wymiary'
+        }),
+        comment: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Twoje komentarze'
+        }),
+        series: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Seria',
+          inputType: 'number',
+        }),
+        volume: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Tom',
+          inputType: 'number',
+        }),
+        publisher: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Wydawca',
+        }),
+        translation: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Autor tłumaczenia',
+        }),
+        ilustrations: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Autor ilustracji',
+        }),
+        type: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Typ (ksiażka/komiks)',
+        }),
+        pages: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Ilość stron',
+          inputType: 'number',
+        }),
+        favourite: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Ulubione',
+          inputType: 'checkbox',
+        }),
+        
+        read: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Przeczytane',
+          inputType: 'checkbox',
+        }),
+        wishlist: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Na liście życzeń',
+          inputType: 'checkbox',
+        }),
+        priceOrg: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Cena orginalna',
+          inputType: 'number',
+          data: {
+            suffix: 'zł',
+          }
+        }),
+        price: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Cena',
+          inputType: 'number',
+          data: {
+            suffix: 'zł',
+          }
+        }),
+        rating: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Ocena',
+          inputType: 'number',
+        }),
+        myTag: this.lfb.controls({
+          component: InputFieldComponent,
+          label: 'Moje tagi',
+        })
+      })
+    })
   }
 }
