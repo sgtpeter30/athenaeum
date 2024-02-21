@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
-import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, IsbnReaderComponent, Book, ImageFieldComponent } from '@lib/shared';
+import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, Book, ImageFieldComponent, IsbnReaderFieldComponent } from '@lib/shared';
+import { CheckboxFieldComponent } from 'src/shared/components/field-components/checkbox-field/checkbox-field.component';
 
 @Component({
   selector: 'app-book',
@@ -19,6 +20,8 @@ import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFi
 })
 export class BookComponent {
   showBookLoader: boolean = false
+
+  bookValue: any
 
   lfb: LiveFormBuilder = new LiveFormBuilder()
   bookLiveForm!: LiveFormModel
@@ -38,9 +41,10 @@ export class BookComponent {
           disabled: true,
         }),
         isbn: this.lfb.controls({
-          component: IsbnReaderComponent,
+          component: IsbnReaderFieldComponent,
           data: {},
-          label: 'ISBN'
+          label: 'ISBN',
+          class: 'isbn-field'
         }),
         title: this.lfb.controls({
           component: InputFieldComponent,
@@ -109,18 +113,18 @@ export class BookComponent {
           inputType: 'number',
         }),
         favourite: this.lfb.controls({
-          component: InputFieldComponent,
+          component: CheckboxFieldComponent,
           label: 'Ulubione',
           inputType: 'checkbox',
         }),
         
         read: this.lfb.controls({
-          component: InputFieldComponent,
+          component: CheckboxFieldComponent,
           label: 'Przeczytane',
           inputType: 'checkbox',
         }),
         wishlist: this.lfb.controls({
-          component: InputFieldComponent,
+          component: CheckboxFieldComponent,
           label: 'Na liście życzeń',
           inputType: 'checkbox',
         }),

@@ -96,10 +96,12 @@ export class LiveFormComponent implements OnInit, OnChanges{
     forEach(data, (item, key)=>{
       this.fields.push({
         name: key, 
-        label: item.label, 
         component: item.component,
         type: item.inputType ?? 'text',
-        data: item.data,
+        label: item?.label, 
+        hidden: item?.hidden,
+        data: item?.data,
+        class: item.class,
       })
       if(item.disabled){
         item.formItem.disable()

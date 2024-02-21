@@ -22,7 +22,7 @@ export class InputFieldComponent {
   constructor(
     private formgroupDirective: FormGroupDirective,
   ) {
-    this.formName = formgroupDirective.control;
+    this.formName = formgroupDirective.control;    
   }
   commonErrorMessage = new CommonErrorMessage() 
 

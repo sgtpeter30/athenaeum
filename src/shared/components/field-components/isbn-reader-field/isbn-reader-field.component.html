@@ -8,5 +8,10 @@
 <button mat-fab color="primary" (click)="getISBN()">
   <mat-icon>photo_camera</mat-icon>
 </button>
+<button mat-fab color="primary" (click)="findByISBN()">
+  <mat-icon>cloud_download</mat-icon>
+</button>
 
-<video #isbn_video autoplay></video>
+<dialog #dialog>
+  <video #isbn_video autoplay></video>
+</dialog>

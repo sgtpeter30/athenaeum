@@ -1,7 +1,10 @@
 <form [formGroup]="formName">
-  <mat-form-field subscriptSizing="dynamic">
-    <mat-label>{{field.label}}</mat-label>
-    <input matInput [formControlName]="field.name" [type]="field.type">
+  @if (field.src) {
+    <img [src]="field.src" [alt]="field.name">
+  }
+  <input [formControlName]="field.name" type="file">
+  <!-- <mat-form-field subscriptSizing="dynamic">
+    
     <mat-error>{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
+  </mat-form-field> -->
 </form>

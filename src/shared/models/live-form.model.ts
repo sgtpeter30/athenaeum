@@ -31,6 +31,7 @@ export interface FormBaseModel{
   component: any;
   data?: any;
   label?: string;
+  class?: string;
   disabled?: boolean;
   hidden?: boolean;
   inputType?: string;

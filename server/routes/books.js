@@ -1,6 +1,6 @@
 const express = require("express");
-const Book = require('../models/book');
-const checkAuth = require('../middleware/check-auth')
+const Book = require('../models/bookMongoose');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ router.get('/:id', checkAuth ,(req, res, next) => {
   })
 });
 router.get('author/:name', checkAuth,(req, res, next) => {
-  console.log(req.params.id);
+  console.log(req.params.id); q
   Book.find({author: req.params.id}).then(book => {
     if(book){
       console.log(book)

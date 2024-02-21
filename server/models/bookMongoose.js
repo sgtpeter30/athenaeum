@@ -1,5 +1,5 @@
-
-Book = {
+const mongoose = require('mongoose');
+const bookSchema = mongoose.Schema({
   title : {type: String, require: true},
   author : String,
   series : String,
@@ -23,4 +23,5 @@ Book = {
   rating : Number,
   myTag : Array,
   decription : String,
-}
+});
+module.exports = mongoose.model('Book', bookSchema);

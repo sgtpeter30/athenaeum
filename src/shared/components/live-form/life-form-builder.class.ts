@@ -18,7 +18,8 @@ export class LiveFormBuilder{
       data: data?.data,
       disabled: data?.disabled,
       hidden: data?.hidden,
-      formItem: this.fb.control(data?.value, {validators: data?.validators})
+      class: data?.class,
+      formItem: this.fb.control(data?.value, {validators: data?.validators}),
     }
   }
   // todo array

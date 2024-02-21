@@ -1,7 +1,9 @@
 <header>
-  <button mat-raised-button color="primary" (click)="goToList()">Lista</button>
-  <button mat-raised-button color="primary" (click)="addNew()">Dodaj nową</button>
-  <button mat-raised-button color="primary" (click)="goUser()" disabled>user</button>
+  <mat-toolbar>
+    <button mat-raised-button color="primary" (click)="goToList()">Lista</button>
+    <button mat-raised-button color="primary" (click)="addNew()">Dodaj nową</button>
+    <button mat-raised-button color="primary" (click)="goUser()" disabled>user</button>
+  </mat-toolbar>
 </header>
 <!-- <div cdkMenuBar>
   <button class="example-menu-bar-item" cdkMenuItem [cdkMenuTriggerFor]="file">File</button>

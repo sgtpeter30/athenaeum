@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/menu';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     CdkMenuGroup,
     CdkMenuItemCheckbox,
     CdkMenuItemRadio,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
