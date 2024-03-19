@@ -55,7 +55,7 @@ export class BooksService {
 
 
   searchByISBN(isbn: string){
-    lastValueFrom(this.http.get<Book>(this.urls.getByISBN))
+    lastValueFrom(this.http.get<Book>(`${this.urls.getByISBN}/${isbn}`))
       .then((response: Book) => {
         this.book.update(()=> response)
       })

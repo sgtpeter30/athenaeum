@@ -29,7 +29,8 @@ export class BookComponent {
 
   constructor(
     private userService : UserService,
-  ){}
+  ){
+  }
 
   ngOnInit(): void {
     this.bookLiveForm = ({
