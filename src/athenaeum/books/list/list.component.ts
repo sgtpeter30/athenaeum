@@ -8,8 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { Book } from '@lib/shared';
-import { BooksService } from 'src/shared/services/items/books.service';
+import { Book, BooksService } from '@lib/shared';
 import { ListBookFormComponent } from "./list-book-form/list-book-form.component";
 import { Router } from '@angular/router';
 

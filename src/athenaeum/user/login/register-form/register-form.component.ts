@@ -32,11 +32,11 @@ export class RegisterFormComponent implements OnInit {
     this.registerLiveForm = {
       name: 'registerForm',
       group: {
-        email: this.lfb.controls({
-          component: InputFieldComponent,
-          label: 'Adres e-mail',
-          validators: [Validators.required, Validators.email]
-        }),
+        // email: this.lfb.controls({
+        //   component: InputFieldComponent,
+        //   label: 'Adres e-mail',
+        //   validators: [Validators.required, Validators.email]
+        // }),
         login: this.lfb.controls({
           component: InputFieldComponent,
           label: 'Login',
@@ -46,13 +46,13 @@ export class RegisterFormComponent implements OnInit {
           component: InputFieldComponent,
           inputType: 'password',
           label: 'Hasło',
-          validators: [Validators.required, Validators.minLength(8)]
+          validators: [Validators.required, Validators.minLength(4)]
         }),
         repeatPassword: this.lfb.controls({
           component: InputFieldComponent,
           inputType: 'password',
           label: 'Powtórz hasło',
-          validators: [Validators.required, Validators.minLength(8), PasswordValidator('password')]
+          validators: [Validators.required, Validators.minLength(4), PasswordValidator('password')]
         })
       }
     }

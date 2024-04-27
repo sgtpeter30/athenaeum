@@ -6,8 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserMultiFormatReader, Result } from '@zxing/library';
-import { BooksService } from 'src/shared/services/items/books.service';
 import { CommonErrorMessage } from 'src/shared/validators';
+import { MergeDataComponent } from './merge-data/merge-data.component';
+import { Book, BooksService } from '@lib/shared';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-isbn-reader',
@@ -18,6 +20,7 @@ import { CommonErrorMessage } from 'src/shared/validators';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
+    MergeDataComponent
   ],
   templateUrl: './isbn-reader-field.component.html',
   styleUrl: './isbn-reader-field.component.scss',
@@ -30,13 +33,17 @@ export class IsbnReaderFieldComponent {
   @ViewChild('isbn_video') video!: {nativeElement: HTMLVideoElement};
   private codeReader!: BrowserMultiFormatReader;
 
+  externalBooksArray: Book[] = []
+
   constructor(
     private formgroupDirective: FormGroupDirective,
     private booksService : BooksService,
     private snackBar : MatSnackBar,
+    private matDialog : MatDialog,
   ) {
     this.formName = formgroupDirective.control;
   }
+
   getISBN(){
     this.codeReader = new BrowserMultiFormatReader();
     this.codeReader.decodeFromVideoDevice(null, this.video.nativeElement, (result: Result)=> {
@@ -62,9 +69,23 @@ export class IsbnReaderFieldComponent {
     
   }
 
-  findByISBN(){
+  async findByISBN(){
     const isbn =  this.formName.get('isbn')?.value
-    this.booksService.searchByISBN(isbn)
+    if(!isbn){
+      return this.snackBar.open("Uzupełnij ISBN", undefined, {
+        duration: 2000,
+        panelClass: 'error-snack',
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      })
+    }
+    this.openDialog()
+    await this.booksService.searchByISBN(isbn);
+    return
+  }
+
+  openDialog(){
+    this.matDialog.open(MergeDataComponent)
   }
     
   commonErrorMessage = new CommonErrorMessage() 

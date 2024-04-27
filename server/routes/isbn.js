@@ -2,42 +2,262 @@ const express = require("express");
 const https = require('https');
 const checkAuth = require('../middleware/check-auth');
 const authData = require('../auth')
+const bookServices = require('../middleware/book-services')
 
 const router = express.Router();
 
-const getOutsideRequest = (server)=>{
-  return new Promise((resolve, reject) => {
-    server.on('response', (response) => {
-      let data = '';
-      response.on('data', (chunk) => {
-          data += chunk;
-      });
-      response.setHeader('Connection', 'close')
-      response.on('end', () => {
-        console.log('end?')
-        resolve(JSON.parse(data));
-      });
-  });
-  server.on('error', reject);
-  server.end();
-  })
-}
-
-router.get('/:isbn', checkAuth, (req, res, next) => {
+router.get('/:isbn', checkAuth, async (req, res, next) => {
   console.log(req.params);
   console.log(req.params.isbn);
   const isbn = req.params.isbn
   // const isbn = '9788379648672'
 
-  const bnServer = new URL(`https://data.bn.org.pl/api/bibs.json?isbnIssn=${isbn}`);
-  const bnRequest = https.request(bnServer)
-  const openLibrary = new URL(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=details&format=json`)
-  const openLibraryRequest = https.request(openLibrary)
-  const isbnPlus = new URL(`https://api-2445581351187.apicast.io:443/search?q=business&p=1&app_id=${authData.isbnPlusId}&app_key=${authData.isbnPlusKey}&${isbn}`)
-  const isbnPlusRequest = https.request(isbnPlus)
-  
-  const googleBooks = new URL(`https://www.googleapis.com/books/v1/volumes?q=+isbn:${isbn}&projection=full&key=${authData.googleApiKey}`)
-  const googleBooksRequest = https.request(googleBooks)
+  try {
+    const booksArray = await bookServices(isbn)
+    
+    //   {
+    //     "title": "Czarne miecze",
+    //     "author": "Arkady Saulski",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "undefined undefined"
+
+    //   },
+    //   {
+    //     "title": "Czarne miecze",
+    //     "author": "Arkady Saulski",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "undefined undefined"
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     title: "tytuł",
+    //   author: "autor",
+    //   comment: "komentarz",
+    //   cover: "okładka",
+    //   decription: "opis",
+    //   dimensions: "wymiary",
+    //   edition: "edycja",
+    //   favourite: "ulubiona",
+    //   ilustrations: "ilustracje",
+    //   orgLang: "język orginału",
+    //   pages: "ilość stron",
+    //   price: "cena",
+    //   priceOrg: "cena oryginalna",
+    //   publisher: "wydawca",
+    //   series: "seria",
+    //   size: "rozmiar",
+    //   translation: "tłumaczenie",
+    //   type: "typ",
+    //   volume: "tom",
+    //   read: "przeczytana",
+    //   myTag: "moje tagi",
+    //   orgTitle: "tytuł oryginalny",
+    //   mode: "",
+    //   rating: "ocena",
+    //   wishlist: "lista życzeń",
+    //   },
+    //   {
+    //     "title": "Czarne miecze",
+    //     "author": "Arkady Saulski",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "undefined undefined"
+    //   },
+    //   {
+    //     "title": "Czarne miecze",
+    //     "author": "Arkady Saulski",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "undefined undefined"
+    //   },
+    //   {
+    //     "title": "Czarne miecze",
+    //     "author": "Arkady Saulski",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "undefined undefined"
+    //   },
+    //   {
+    //     "title": "Czarne mieczyki",
+    //     "author": "Saulski Arkady 2",
+    //     "orgLang": "pl",
+    //     "pages": 0,
+    //     "price": "210 zł",
+    //     "series": "some series",
+    //   }
+    // ]
+    // console.log(booksArray);
+    // setTimeout(()=>{
+    // }, 1000)
+    // console.log("booksArray");
+    res.json(booksArray);
+ } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: 'Wystąpił błąd podczas próby połączenia z serwerami' });
+ }
   
   // const request = https.request(dataServerUrl, (response) => {
   //   let data = '';
@@ -56,24 +276,20 @@ router.get('/:isbn', checkAuth, (req, res, next) => {
 
   // // Wykonanie zapytania
   // request.end();
-
-  Promise.all([
-    // getOutsideRequest(bnRequest),
-    // getOutsideRequest(openLibraryRequest),
-    // getOutsideRequest(isbnPlusRequest)
-    getOutsideRequest(googleBooksRequest)
-  ]).then((responses) => {
-    console.log('responses')
-    // Zwrócenie odpowiedzi z obu serwerów jako odpowiedź na początkowe żądanie GET
-    res.json(responses);
-  }).catch((error) => {
-      // Obsługa błędów
-      res.status(500).json({ error: 'Wystąpił błąd podczas próby połączenia z serwerami' });
-  });
+  
+  // Promise.all([
+  //   // getOutsideRequest(bnRequest),
+  //   // getOutsideRequest(openLibraryRequest),
+  //   // getOutsideRequest(isbnPlusRequest)
+  //   // getOutsideRequest(googleBooksRequest)
+  // ]).then((responses) => {
+  //   console.log('responses')
+  //   // Zwrócenie odpowiedzi z obu serwerów jako odpowiedź na początkowe żądanie GET
+  //   res.json(responses);
+  // }).catch((error) => {
+  //     // Obsługa błędów
+  //     res.status(500).json({ error: 'Wystąpił błąd podczas próby połączenia z serwerami' });
+  // });
 });
-
-const bnMap = (data)=>{
-  return data
-}
 
 module.exports = router;

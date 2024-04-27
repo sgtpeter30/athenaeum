@@ -17,6 +17,11 @@ export interface Book
   cover? : String,
   pages? : Number,
   size? : String,
+  dimensions?: {
+    height: string,
+    width: string,
+    thickness: string
+  },
   favourite?: Boolean,
   read?: Boolean,
   wishlist?: Boolean,

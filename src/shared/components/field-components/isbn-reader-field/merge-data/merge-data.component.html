@@ -1,0 +1,16 @@
+<div id="merge-data-dialog">
+  <mat-slide-toggle color="primary" [(ngModel)]="editEnabled">Edit</mat-slide-toggle>
+  @if (!(externalBooksArray | async)?.length) {
+    <mat-spinner></mat-spinner>
+  }
+  @if ((externalBooksArray | async)?.length) {
+    @if(editEnabled){
+    <app-merge-data-form #mergeForm [externalBooksArray]="externalBooksArray | async"></app-merge-data-form>
+    }
+    @if(!editEnabled){
+    <app-merge-data-info #mergeInfo [externalBooksArray]="externalBooksArray | async"></app-merge-data-info>
+    }
+  }
+</div>
+
+<button mat-raised-button color="primary" (click)="saveNewData()">{{"common.addNew" | translate}}</button>

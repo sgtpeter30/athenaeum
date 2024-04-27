@@ -11,7 +11,8 @@ const app = express();
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
-mongoose.connect(authData.mongooseAdress)
+// mongoose.connect(authData.mongooseAdress)
+mongoose.connect(authData.localMongoose)
   .then(()=>{
     console.log('Connected to database!');
   })

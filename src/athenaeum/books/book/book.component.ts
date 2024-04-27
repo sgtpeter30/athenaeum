@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
-import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, Book, ImageFieldComponent, IsbnReaderFieldComponent } from '@lib/shared';
-import { CheckboxFieldComponent } from 'src/shared/components/field-components/checkbox-field/checkbox-field.component';
+import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, Book, ImageFieldComponent, IsbnReaderFieldComponent, BooksService, CheckboxFieldComponent } from '@lib/shared';
+
 
 @Component({
   selector: 'app-book',
@@ -29,6 +29,7 @@ export class BookComponent {
 
   constructor(
     private userService : UserService,
+    private booksService : BooksService,
   ){
   }
 
@@ -154,7 +155,14 @@ export class BookComponent {
           component: InputFieldComponent,
           label: 'Moje tagi',
         })
-      })
+      }),
+      initValues: this.booksService.book$.subscribe()
+    })
+
+    this.booksService.getCurrentBook().subscribe(book => {
+      this.bookForm?.setValues(book)
     })
   }
+
+  
 }

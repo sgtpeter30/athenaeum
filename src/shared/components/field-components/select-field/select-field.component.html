@@ -1,0 +1,11 @@
+<form [formGroup]="formName" [hidden]="field?.hidden">
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>{{field.label}}</mat-label>
+    <mat-select [formControlName]="field.name" name="food">
+      @for (option of field.data; track option) {
+        <mat-option [value]="option.value">{{option.name}}</mat-option>
+      }
+    </mat-select>
+    <mat-error>{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</form>

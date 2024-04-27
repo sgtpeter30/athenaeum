@@ -205,6 +205,15 @@ $primary-default: mat.get-theme-color($athenaeum-theme, primary, default);
 $secondary-default: mat.get-theme-color($athenaeum-theme, accent, default);
 $warn-default: mat.get-theme-color($athenaeum-theme, warn, default);
 
+dialog{
+  background-color: var(--mat-app-background-color);
+  color: var(--mat-app-text-color);
+}
+::backdrop {
+  background-color: #000;
+  opacity: 0.5;
+}
+
 .error-snack{
   .mdc-snackbar__surface{
     // background-color: $primary-default !important;
