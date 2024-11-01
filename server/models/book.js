@@ -1,4 +1,3 @@
-
 Book = {
   title : {type: String, require: true},
   author : String,

@@ -3,6 +3,7 @@ import { FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/for
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonErrorMessage } from 'src/shared/validators';
+import { DragAndDropFileComponent } from '../../common-components/drag-and-drop-file/drag-and-drop-file.component';
 
 @Component({
   selector: 'app-image-field',
@@ -11,6 +12,7 @@ import { CommonErrorMessage } from 'src/shared/validators';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    DragAndDropFileComponent,
   ],
   templateUrl: './image-field.component.html',
   styleUrl: './image-field.component.scss'

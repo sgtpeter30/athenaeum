@@ -1,0 +1,19 @@
+:host{
+  .dropzone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid #fff;
+    h3{
+      position: absolute;
+      z-index: -1;
+    }
+    input{
+      width: 50rem;
+      height: 50rem;
+      background-color: red;
+      opacity: 0;
+    }
+  }
+}

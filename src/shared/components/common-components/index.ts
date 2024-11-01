@@ -1,0 +1,1 @@
+export * from './drag-and-drop-file/drag-and-drop-file.component'
