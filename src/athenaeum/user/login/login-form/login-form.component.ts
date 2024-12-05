@@ -2,7 +2,7 @@ import { Component, OnInit, Signal, ViewChild, signal } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
-import { InputFieldComponent, LiveFormComponent, UserService, LiveFormBuilder, LiveFormModel, User } from '@lib/shared';
+import { InputFieldComponent, UserService, LiveFormBuilder, LiveFormModel, User, LiveFormComponent } from '@lib/shared';
 import { CommonModule } from '@angular/common';
 
 @Component({

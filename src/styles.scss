@@ -142,15 +142,15 @@ $theme-accent: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$athenaeum-primary: mat.define-palette($theme-primary, 700);
-$athenaeum-accent: mat.define-palette($theme-accent, 500, 900, A100);
+$athenaeum-primary: mat.m2-define-palette($theme-primary, 700);
+$athenaeum-accent: mat.m2-define-palette($theme-accent, 500, 900, A100);
 
 // The warn palette is optional (defaults to red).
-$athenaeum-warn: mat.define-palette($theme-warn, A100);
+$athenaeum-warn: mat.m2-define-palette($theme-warn, A100);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$athenaeum-theme: mat.define-dark-theme((
+$athenaeum-theme: mat.m2-define-dark-theme((
   color: (
     primary: $athenaeum-primary,
     accent: $athenaeum-accent,
