@@ -28,10 +28,6 @@ export class LoginFormComponent implements OnInit {
     private userService : UserService,
   ){}
 
-  initVal = {
-    login: 'Tyrael',
-    password: 'Diablo'
-  }
 
   ngOnInit(): void {
     this.loginLiveForm = {

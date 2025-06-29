@@ -12,12 +12,13 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
 // mongoose.connect(authData.mongooseAdress)
+console.log(authData.localMongoose)
 mongoose.connect(authData.localMongoose)
   .then(()=>{
     console.log('Connected to database!');
   })
-  .catch(()=>{
-    console.log('Connection failed!');
+  .catch((error)=>{
+    console.error('Connection failed!', error);
   });
 
 app.use((req, res, next)=>{
