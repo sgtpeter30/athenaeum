@@ -3,11 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormBaseModel } from '@lib/shared';
 
 @Component({
-  selector: 'app-live-control-form',
-  standalone: true,
-  imports: [],
-  templateUrl: './live-control-form.component.html',
-  styleUrl: './live-control-form.component.scss'
+    selector: 'app-live-control-form',
+    imports: [],
+    templateUrl: './live-control-form.component.html',
+    styleUrl: './live-control-form.component.scss'
 })
 export class LiveControlFormComponent implements AfterViewInit{
 

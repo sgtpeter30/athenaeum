@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-list',
-    standalone: true,
     templateUrl: './list.component.html',
     styleUrl: './list.component.scss',
     animations: [

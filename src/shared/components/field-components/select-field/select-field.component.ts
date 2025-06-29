@@ -7,17 +7,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonErrorMessage } from 'src/shared/validators';
 
 @Component({
-  selector: 'app-select-field',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-  ],
-  templateUrl: './select-field.component.html',
-  styleUrl: './select-field.component.scss'
+    selector: 'app-select-field',
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+    ],
+    templateUrl: './select-field.component.html',
+    styleUrl: './select-field.component.scss'
 })
 export class SelectFieldComponent {
   @Input() field!: any;

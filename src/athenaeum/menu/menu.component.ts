@@ -13,21 +13,20 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [
-    CdkMenuBar,
-    CdkMenuItem,
-    CdkMenuTrigger,
-    CdkMenu,
-    CdkMenuGroup,
-    CdkMenuItemCheckbox,
-    CdkMenuItemRadio,
-    MatButtonModule,
-    MatToolbarModule,
-  ],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+    selector: 'app-menu',
+    imports: [
+        CdkMenuBar,
+        CdkMenuItem,
+        CdkMenuTrigger,
+        CdkMenu,
+        CdkMenuGroup,
+        CdkMenuItemCheckbox,
+        CdkMenuItemRadio,
+        MatButtonModule,
+        MatToolbarModule,
+    ],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
   constructor(

@@ -7,14 +7,13 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-login-form',
-    standalone: true,
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.scss',
     imports: [
-      CommonModule,
-      MatButtonModule,
-      MatInputModule,
-      LiveFormComponent
+        CommonModule,
+        MatButtonModule,
+        MatInputModule,
+        LiveFormComponent
     ]
 })
 export class LoginFormComponent implements OnInit {

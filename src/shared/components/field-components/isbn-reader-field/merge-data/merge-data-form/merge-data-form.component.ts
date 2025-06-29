@@ -5,13 +5,12 @@ import { SelectFieldComponent } from '../../../select-field/select-field.compone
 import { TranslationService } from 'src/shared/services';
 
 @Component({
-  selector: 'app-merge-data-form',
-  standalone: true,
-  imports: [
-    LiveFormComponent
-  ],
-  templateUrl: './merge-data-form.component.html',
-  styleUrl: './merge-data-form.component.scss'
+    selector: 'app-merge-data-form',
+    imports: [
+        LiveFormComponent
+    ],
+    templateUrl: './merge-data-form.component.html',
+    styleUrl: './merge-data-form.component.scss'
 })
 export class MergeDataFormComponent {
   @Input({ required: true })

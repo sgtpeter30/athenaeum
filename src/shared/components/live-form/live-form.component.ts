@@ -11,18 +11,17 @@ import { forEach } from 'lodash';
 import { LiveControlFormComponent } from './live-control-form/live-control-form.component';
 
 @Component({
-  selector: 'app-live-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    LiveControlFormComponent,
-  ],
-  templateUrl: './live-form.component.html',
-  styleUrl: './live-form.component.scss'
+    selector: 'app-live-form',
+    imports: [
+        CommonModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        LiveControlFormComponent,
+    ],
+    templateUrl: './live-form.component.html',
+    styleUrl: './live-form.component.scss'
 })
 export class LiveFormComponent implements OnInit, OnChanges{
   @Input()

@@ -6,15 +6,14 @@ import { InputFieldComponent, LiveFormComponent, LiveFormModel, PasswordValidato
 import { LiveFormBuilder } from 'src/shared/components/live-form/life-form-builder.class';
 
 @Component({
-  selector: 'app-register-form',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatInputModule,
-    LiveFormComponent
-  ],
-  templateUrl: './register-form.component.html',
-  styleUrl: './register-form.component.scss'
+    selector: 'app-register-form',
+    imports: [
+        MatButtonModule,
+        MatInputModule,
+        LiveFormComponent
+    ],
+    templateUrl: './register-form.component.html',
+    styleUrl: './register-form.component.scss'
 })
 export class RegisterFormComponent implements OnInit {
 

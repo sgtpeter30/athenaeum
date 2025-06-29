@@ -11,18 +11,17 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 
 @Component({
     selector: 'app-login',
-    standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
     encapsulation: ViewEncapsulation.None,
     imports: [
-      MatExpansionModule,
-      MatButtonModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatIconModule,
-      LoginFormComponent,
-      RegisterFormComponent
+        MatExpansionModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        LoginFormComponent,
+        RegisterFormComponent
     ]
 })
 export class LoginComponent {

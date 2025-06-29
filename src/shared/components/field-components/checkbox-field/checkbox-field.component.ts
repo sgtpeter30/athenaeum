@@ -5,15 +5,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CommonErrorMessage } from 'src/shared/validators';
 
 @Component({
-  selector: 'app-checkbox-field',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatCheckboxModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './checkbox-field.component.html',
-  styleUrl: './checkbox-field.component.scss'
+    selector: 'app-checkbox-field',
+    imports: [
+        MatFormFieldModule,
+        MatCheckboxModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './checkbox-field.component.html',
+    styleUrl: './checkbox-field.component.scss'
 })
 export class CheckboxFieldComponent {
   @Input() field!: any;

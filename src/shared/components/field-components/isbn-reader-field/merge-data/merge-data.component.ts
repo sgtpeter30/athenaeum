@@ -13,22 +13,21 @@ import { Observable } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-merge-data',
-  standalone: true,
-  templateUrl: './merge-data.component.html',
-  styleUrl: './merge-data.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    MatRadioModule,
-    MergeDataInfoComponent,
-    MergeDataFormComponent,
-    MatProgressSpinnerModule,
-    TranslatePipe
-  ]
+    selector: 'app-merge-data',
+    templateUrl: './merge-data.component.html',
+    styleUrl: './merge-data.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        MatRadioModule,
+        MergeDataInfoComponent,
+        MergeDataFormComponent,
+        MatProgressSpinnerModule,
+        TranslatePipe
+    ]
 })
 export class MergeDataComponent {
   @ViewChild('mergeForm') mergeForm!: any;

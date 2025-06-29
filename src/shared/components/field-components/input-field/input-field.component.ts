@@ -5,15 +5,14 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonErrorMessage } from 'src/shared/validators';
 
 @Component({
-  selector: 'app-input-field',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './input-field.component.html',
-  styleUrl: './input-field.component.scss',
+    selector: 'app-input-field',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './input-field.component.html',
+    styleUrl: './input-field.component.scss'
 })
 export class InputFieldComponent {
   @Input() field!: any;

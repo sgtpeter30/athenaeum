@@ -7,16 +7,15 @@ import { Book } from 'src/shared/models';
 import { TranslationService } from 'src/shared/services';
 
 @Component({
-  selector: 'app-merge-data-info',
-  standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    MatTableModule,
-    MatRadioModule,
-  ],
-  templateUrl: './merge-data-info.component.html',
-  styleUrl: './merge-data-info.component.scss'
+    selector: 'app-merge-data-info',
+    imports: [
+        FormsModule,
+        CommonModule,
+        MatTableModule,
+        MatRadioModule,
+    ],
+    templateUrl: './merge-data-info.component.html',
+    styleUrl: './merge-data-info.component.scss'
 })
 export class MergeDataInfoComponent implements OnInit {
   @Input()

@@ -12,18 +12,17 @@ import { Book, BooksService } from '@lib/shared';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-isbn-reader',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MergeDataComponent
-  ],
-  templateUrl: './isbn-reader-field.component.html',
-  styleUrl: './isbn-reader-field.component.scss',
+    selector: 'app-isbn-reader',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MergeDataComponent
+    ],
+    templateUrl: './isbn-reader-field.component.html',
+    styleUrl: './isbn-reader-field.component.scss'
 })
 export class IsbnReaderFieldComponent {
   @Input() field!: any;

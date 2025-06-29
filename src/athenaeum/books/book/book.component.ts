@@ -7,16 +7,15 @@ import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFi
 
 
 @Component({
-  selector: 'app-book',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatInputModule,
-    LiveFormComponent
-  ],
-  templateUrl: './book.component.html',
-  styleUrl: './book.component.scss'
+    selector: 'app-book',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatInputModule,
+        LiveFormComponent
+    ],
+    templateUrl: './book.component.html',
+    styleUrl: './book.component.scss'
 })
 export class BookComponent {
   showBookLoader: boolean = false

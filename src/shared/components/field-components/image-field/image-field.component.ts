@@ -6,16 +6,15 @@ import { CommonErrorMessage } from 'src/shared/validators';
 import { DragAndDropFileComponent } from '../../common-components/drag-and-drop-file/drag-and-drop-file.component';
 
 @Component({
-  selector: 'app-image-field',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    DragAndDropFileComponent,
-  ],
-  templateUrl: './image-field.component.html',
-  styleUrl: './image-field.component.scss'
+    selector: 'app-image-field',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        DragAndDropFileComponent,
+    ],
+    templateUrl: './image-field.component.html',
+    styleUrl: './image-field.component.scss'
 })
 export class ImageFieldComponent {
   @Input() field!: any;

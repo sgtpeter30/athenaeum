@@ -6,7 +6,6 @@ import { LiveFormComponent } from "@lib/shared";
 
 @Component({
     selector: 'app-list-book-form',
-    standalone: true,
     templateUrl: './list-book-form.component.html',
     styleUrl: './list-book-form.component.scss',
     imports: [
