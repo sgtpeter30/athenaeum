@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Book, InputFieldComponent, LiveFormBuilder, LiveFormModel } from '@lib/shared';
@@ -9,9 +9,8 @@ import { LiveFormComponent } from "@lib/shared";
     templateUrl: './list-book-form.component.html',
     styleUrl: './list-book-form.component.scss',
     imports: [
-        CommonModule,
-        LiveFormComponent,
-    ]
+    LiveFormComponent
+]
 })
 export class ListBookFormComponent implements OnInit {
   @Input()

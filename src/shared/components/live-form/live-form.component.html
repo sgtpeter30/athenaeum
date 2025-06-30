@@ -1,8 +1,10 @@
-<mat-spinner class="form-spinner" *ngIf="showLoader"></mat-spinner>
+@if (showLoader) {
+  <mat-spinner class="form-spinner"></mat-spinner>
+}
 <ng-container>
   <form [formGroup]="form" [name]="formName" [className]="showLoader? 'spinning' : '' ">
-    <ng-container *ngFor="let field of fields">
+    @for (field of fields; track field) {
       <app-live-control-form [field]="field" [className]="field.class? field.class : '' "></app-live-control-form>
-    </ng-container>
+    }
   </form>
 </ng-container>

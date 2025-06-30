@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
@@ -9,11 +9,10 @@ import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFi
 @Component({
     selector: 'app-book',
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatInputModule,
-        LiveFormComponent
-    ],
+    MatButtonModule,
+    MatInputModule,
+    LiveFormComponent
+],
     templateUrl: './book.component.html',
     styleUrl: './book.component.scss'
 })

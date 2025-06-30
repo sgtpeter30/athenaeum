@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnChanges, OnInit, Signal, SimpleChanges } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AbstractControl, FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -13,13 +13,12 @@ import { LiveControlFormComponent } from './live-control-form/live-control-form.
 @Component({
     selector: 'app-live-form',
     imports: [
-        CommonModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        LiveControlFormComponent,
-    ],
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    LiveControlFormComponent
+],
     templateUrl: './live-form.component.html',
     styleUrl: './live-form.component.scss'
 })

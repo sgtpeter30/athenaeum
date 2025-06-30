@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatRadioChange, MatRadioModule } from '@angular/material/radio';
@@ -9,11 +9,10 @@ import { TranslationService } from 'src/shared/services';
 @Component({
     selector: 'app-merge-data-info',
     imports: [
-        FormsModule,
-        CommonModule,
-        MatTableModule,
-        MatRadioModule,
-    ],
+    FormsModule,
+    MatTableModule,
+    MatRadioModule
+],
     templateUrl: './merge-data-info.component.html',
     styleUrl: './merge-data-info.component.scss'
 })

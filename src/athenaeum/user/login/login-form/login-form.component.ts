@@ -3,18 +3,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
 import { InputFieldComponent, UserService, LiveFormBuilder, LiveFormModel, User, LiveFormComponent } from '@lib/shared';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-login-form',
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.scss',
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatInputModule,
-        LiveFormComponent
-    ]
+    MatButtonModule,
+    MatInputModule,
+    LiveFormComponent
+]
 })
 export class LoginFormComponent implements OnInit {
   showLoginLoader: boolean = false

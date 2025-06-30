@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,12 +9,11 @@ import { CommonErrorMessage } from 'src/shared/validators';
 @Component({
     selector: 'app-select-field',
     imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-    ],
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule
+],
     templateUrl: './select-field.component.html',
     styleUrl: './select-field.component.scss'
 })
