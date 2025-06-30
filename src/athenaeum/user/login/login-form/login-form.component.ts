@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
           validators: [Validators.required]
         })
       },
-      initValues: this.initVal
+      // initValues: this.initVal
     }
   }
 
