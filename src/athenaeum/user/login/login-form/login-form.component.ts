@@ -26,7 +26,6 @@ export class LoginFormComponent implements OnInit {
     private userService : UserService,
   ){}
 
-
   ngOnInit(): void {
     this.loginLiveForm = {
       name: 'loginForm',
@@ -43,7 +42,6 @@ export class LoginFormComponent implements OnInit {
           validators: [Validators.required]
         })
       },
-      // initValues: this.initVal
     }
   }
 

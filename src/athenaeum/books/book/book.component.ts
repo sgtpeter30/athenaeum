@@ -1,25 +1,25 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
-import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, Book, ImageFieldComponent, IsbnReaderFieldComponent, BooksService, CheckboxFieldComponent } from '@lib/shared';
-
+import { LiveFormBuilder, LiveFormModel, LiveFormComponent, UserService, InputFieldComponent, Book, IsbnReaderFieldComponent, ImageFieldComponent, CheckboxFieldComponent, BooksService } from '@lib/shared';
+import { BrowserMultiFormatReader } from '@zxing/library';
 
 @Component({
-    selector: 'app-book',
-    imports: [
+  selector: 'app-book',
+  standalone: true,
+  imports: [
+    CommonModule,
     MatButtonModule,
     MatInputModule,
     LiveFormComponent
-],
-    templateUrl: './book.component.html',
-    styleUrl: './book.component.scss'
+  ],
+  templateUrl: './book.component.html',
+  styleUrl: './book.component.scss'
 })
 export class BookComponent {
   showBookLoader: boolean = false
-
-  bookValue: any
 
   lfb: LiveFormBuilder = new LiveFormBuilder()
   bookLiveForm!: LiveFormModel
@@ -28,8 +28,7 @@ export class BookComponent {
   constructor(
     private userService : UserService,
     private booksService : BooksService,
-  ){
-  }
+  ){}
 
   ngOnInit(): void {
     this.bookLiveForm = ({
