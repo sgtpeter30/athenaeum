@@ -1,11 +1,13 @@
 import { Book } from './book.model'
+import { ExternalBook } from './external-book.model';
 
 export interface Translations {
   common: {
     [name: string]: string
   },
-  book: TranslationsBook;
+  // book: TranslationsBook;
+  book: any;
 }
 export type TranslationsBook = {
-  [K in keyof Book]: string;
+  [K in keyof ExternalBook]: string;
 }

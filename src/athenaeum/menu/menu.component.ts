@@ -10,35 +10,35 @@ import {
 } from '@angular/cdk/menu';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { TranslationService, UserService } from '@lib/shared';
+import { TranslatePipe } from 'src/shared/pipes';
 
 @Component({
-    selector: 'app-menu',
-    imports: [
-        CdkMenuBar,
-        CdkMenuItem,
-        CdkMenuTrigger,
-        CdkMenu,
-        CdkMenuGroup,
-        CdkMenuItemCheckbox,
-        CdkMenuItemRadio,
-        MatButtonModule,
-        MatToolbarModule,
-    ],
-    templateUrl: './menu.component.html',
-    styleUrl: './menu.component.scss'
+  selector: 'app-menu',
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    TranslatePipe
+  ],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
   constructor(
     private router: Router,
-  ){}
-  goToList(){
+    public userService: UserService
+  ) { }
+  goToList() {
     this.router.navigate(["/books"]);
   }
-  addNew(){
+  addNew() {
     this.router.navigate(["/book"]);
   }
-  goUser(){
-    this.router.navigate(["/books"]);
+  goUser() {
+    this.router.navigate(["/user"]);
+  }
+  logout(){
+    this.userService.logout();
   }
 }

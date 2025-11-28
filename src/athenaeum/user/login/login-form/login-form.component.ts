@@ -3,6 +3,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
 import { InputFieldComponent, UserService, LiveFormBuilder, LiveFormModel, User, LiveFormComponent } from '@lib/shared';
+import { TranslatePipe } from 'src/shared/pipes';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { InputFieldComponent, UserService, LiveFormBuilder, LiveFormModel, User,
     imports: [
     MatButtonModule,
     MatInputModule,
-    LiveFormComponent
+    LiveFormComponent,
+    TranslatePipe
 ]
 })
 export class LoginFormComponent implements OnInit {

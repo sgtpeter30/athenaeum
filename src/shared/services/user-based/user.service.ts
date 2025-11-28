@@ -2,15 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
-import { lastValueFrom } from 'rxjs';
+import { catchError, lastValueFrom, of, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BooksService } from '../items/books.service';
+
+export interface Token {
+  accessToken: string | null,
+  refreshToken: string | null,
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private token!: string | null;
+  private token!: Token | null
 
   constructor(
     private http: HttpClient,
@@ -18,27 +23,43 @@ export class UserService {
     private snackBar: MatSnackBar,
     private booksService: BooksService,
   ) { }
-  url: string = "api/user";
+  url: string = "api/auth";
 
-  getToken(): string | null {
+  setToken(token: Token | null){
+    this.token = token;
+    if(token !== null){
+      this.cacheToken(token);
+    }else{
+      this.cacheToken({
+        accessToken: "",
+        refreshToken: ""
+      });
+    }
+  }
+
+  getToken(): Token | null {
     if (!this.token) {
       this.token = this.getCacheToken()
     }
-    return this.token;
+    return this.token.accessToken !== "" ? this.token : null;
   };
 
-  getCacheToken(): string | null {
+  getCacheToken(): Token {
     const cookieValue = document.cookie
       .split("; ")
       .find((row) => row.startsWith("goodCookie="))
       ?.split("=")[1];
-    return cookieValue ? cookieValue : null
+    return cookieValue && cookieValue != 'undefined' ? JSON.parse(cookieValue) : {
+      accessToken: "",
+      refreshToken: ""
+    }
   }
 
-  cacheToken(token: string) {
+  cacheToken(token: Token) {
     // sessionStorage.setItem('token', token)
     const expireDate = (new Date(Date.now() + 3600 * 1000)).toUTCString();
-    document.cookie = `goodCookie=${token};expires=${expireDate};path=/;secure;samesite;`
+    // document.cookie = `goodCookie=${JSON.stringify(token)};expires=${expireDate};path=/;secure;Strict;`
+    document.cookie = `goodCookie=${JSON.stringify(token)};expires=${expireDate};Strict;`
   }
 
   createUser(data: any) {
@@ -67,27 +88,48 @@ export class UserService {
       })
   };
 
-  loginUser(authData: User) {
+  async loginUser(authData: User) {
     // return this.http.post<User[]>(this.url+'/signin', authData);
-    return lastValueFrom(this.http.post<{ token: string }>(this.url + '/signin', authData))
-      .then(response => {
-        const token = response.token;
-        this.token = token;
-        this.cacheToken(token)
-        // this.getToken()
-        this.booksService.getBooksFromServer()
-        this.router.navigate(["/books"]);
-        return response
-      })
-      .catch(err => {
-        this.snackBar.open(err.error.message, undefined, {
-          duration: 2000,
-          panelClass: 'error-snack',
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
+    try {
+      const response = await lastValueFrom(this.http.post<Token>(this.url + '/signin', authData));
+      const token = response;
+      this.setToken(token)
+      this.booksService.getBooksFromServer();
+      this.router.navigate(["/books"]);
+      return response;
+    } catch (err: any) {
+      this.snackBar.open(err.error.message, undefined, {
+        duration: 2000,
+        panelClass: 'error-snack',
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
+      console.log(err);
+      return err;
+    }
+  }
+
+  async logout() {
+    const response = await lastValueFrom(this.http.post<{ token: string; }>(this.url + '/signout', this.getToken()));
+    this.setToken(null)
+    this.router.navigate(["/"]);
+    return response
+  }
+
+  /** WYWOŁYWANE TYLKO PRZEZ INTERCEPTOR */
+  refreshTokenRequest() {
+    if (!this.token?.refreshToken || this.token?.refreshToken === "") return of(null);
+
+    return this.http
+      .post(this.url+'/refresh', { refreshToken: this.token.refreshToken })
+      .pipe(
+        tap((res: any) => {
+          this.setToken(res)
+        }),
+        catchError(() => {
+          this.logout()
+          return of(null)
         })
-        console.log(err)
-        return err
-      })
+      );
   }
 }

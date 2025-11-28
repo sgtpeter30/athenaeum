@@ -1,5 +1,23 @@
-:host{
+app-merge-data{
   display: flex;
   height: 50vh;
   overflow-y: auto;
+  form[name="mergeBookForm"]{
+    display: flex;
+    flex-wrap: wrap;
+    // width: min-content;
+    min-width: 300px;
+    width: 450px;
+    max-width: 100%;
+    justify-content: center;
+    position: relative;
+    & > app-live-control-form{
+      &:nth-child(odd){
+        width: 10%;
+      }
+      &:nth-child(even){
+        width: 90%;
+      }
+    }
+  }
 }

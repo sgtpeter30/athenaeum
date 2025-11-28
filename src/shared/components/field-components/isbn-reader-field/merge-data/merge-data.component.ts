@@ -11,6 +11,8 @@ import { TranslatePipe } from 'src/shared/pipes';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ExternalBook } from 'src/shared/models/external-book.model';
+import { ISBNService } from '../isbn-service/isbn.service';
 
 @Component({
     selector: 'app-merge-data',
@@ -34,19 +36,14 @@ export class MergeDataComponent {
   @ViewChild('mergeInfo') mergeInfo!: any;
 
   bookService = inject(BooksService);
+  isbnService = inject(ISBNService);
   dialogRef = inject(MatDialogRef<MergeDataComponent>);
 
   editEnabled: boolean = false;
-  externalBooksArray: Observable<Book[] | []> = this.bookService.getExternalBooks()
 
   saveNewData() {
-    let newData: Book
-    if (this.editEnabled) {
-      newData = this.mergeForm.mergeBookForm.getValue()
-    } else {
-      newData = this.mergeInfo.pickedData
-    }
-    this.bookService.addBookData(newData);
+    const newBookData = this.isbnService.getBookDataFromExternalBook();
+    this.bookService.updateCurrentBook(newBookData);
     this.dialogRef.close();
   }
 }

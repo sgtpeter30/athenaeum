@@ -7,20 +7,26 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptorService } from 'src/shared/services/user-based/auth-interceptor.service';
 import { MenuComponent } from "./menu/menu.component";
+import { RefreshInterceptorService } from 'src/shared/services/user-based/refresh.interceptor.service';
 
 export const environment = {
   apiUrl: "http://localhost:3200"
 };
 
-@NgModule({ declarations: [
-        AppComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        MenuComponent], providers: [
-        { provide: "BASE_API_URL", useValue: environment.apiUrl },
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-        provideAnimationsAsync(),
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent], imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MenuComponent
+  ], providers: [
+    { provide: "BASE_API_URL", useValue: environment.apiUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptorService, multi: true },
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
 export class AppModule { }

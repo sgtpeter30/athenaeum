@@ -8,6 +8,7 @@ export interface Book
   series? : String,
   volume? : Number,
   publisher? : String,
+  publishedDate? : String,
   edition? : Number,
   translation? : String,
   orgLang? : String,

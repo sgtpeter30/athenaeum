@@ -1,15 +1,15 @@
 <div id="merge-data-dialog">
   <mat-slide-toggle color="primary" [(ngModel)]="editEnabled">Edit</mat-slide-toggle>
-  @if (!(externalBooksArray | async)?.length) {
+  <!-- @if (!(externalBooksArray | async)?.length) {
     <mat-spinner></mat-spinner>
   }
   @if ((externalBooksArray | async)?.length) {
-    @if(editEnabled){
-    <app-merge-data-form #mergeForm [externalBooksArray]="externalBooksArray | async"></app-merge-data-form>
-    }
-    @if(!editEnabled){
-    <app-merge-data-info #mergeInfo [externalBooksArray]="externalBooksArray | async"></app-merge-data-info>
-    }
+  } -->
+  @if(editEnabled){
+    <app-merge-data-form #mergeForm></app-merge-data-form>
+  }
+  @if(!editEnabled){
+    <app-merge-data-info #mergeInfo></app-merge-data-info>
   }
 </div>
 

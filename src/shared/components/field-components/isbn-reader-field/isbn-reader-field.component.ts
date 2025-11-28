@@ -8,8 +8,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserMultiFormatReader, Result } from '@zxing/library';
 import { CommonErrorMessage } from 'src/shared/validators';
 import { MergeDataComponent } from './merge-data/merge-data.component';
-import { Book, BooksService } from '@lib/shared';
+import { Book } from '@lib/shared';
 import { MatDialog } from '@angular/material/dialog';
+import { ISBNService } from './isbn-service/isbn.service';
 
 @Component({
     selector: 'app-isbn-reader',
@@ -19,7 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
         ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
-        MergeDataComponent
+        
     ],
     templateUrl: './isbn-reader-field.component.html',
     styleUrl: './isbn-reader-field.component.scss'
@@ -32,13 +33,11 @@ export class IsbnReaderFieldComponent {
   @ViewChild('isbn_video') video!: {nativeElement: HTMLVideoElement};
   private codeReader!: BrowserMultiFormatReader;
 
-  externalBooksArray: Book[] = []
-
   constructor(
     private formgroupDirective: FormGroupDirective,
-    private booksService : BooksService,
     private snackBar : MatSnackBar,
     private matDialog : MatDialog,
+    private isbnService: ISBNService
   ) {
     this.formName = formgroupDirective.control;
   }
@@ -47,12 +46,12 @@ export class IsbnReaderFieldComponent {
     this.codeReader = new BrowserMultiFormatReader();
     this.codeReader.decodeFromVideoDevice(null, this.video.nativeElement, (result: Result)=> {
       this.dialog.nativeElement.showModal();
-      console.log(result);
+      // console.log(result);
       if(result?.getText()){
         const isbn = result?.getText()
         this.formName.get('isbn')?.setValue(isbn)
         this.codeReader.reset();
-        this.booksService.searchByISBN(isbn)
+        this.isbnService.searchByISBN(isbn)
         this.dialog.nativeElement.close();
       }
     })
@@ -79,7 +78,7 @@ export class IsbnReaderFieldComponent {
       })
     }
     this.openDialog()
-    await this.booksService.searchByISBN(isbn);
+    await this.isbnService.searchByISBN(isbn);
     return
   }
 

@@ -26,3 +26,10 @@ export const userLogged: CanActivateFn = (
 )=>{
   return inject(PermissionsService).isLogged();
 }
+
+export const userLoggedOut: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+)=>{
+  return !inject(PermissionsService).isLogged();
+}

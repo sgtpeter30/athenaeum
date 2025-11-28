@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Book } from '@lib/shared';
+import { Book, ExternalBook } from '@lib/shared';
 import { isEmpty } from 'lodash';
 import { Observable, distinctUntilChanged, lastValueFrom, map } from 'rxjs';
 
@@ -16,13 +16,7 @@ export class BooksService {
   private book = signal<Book | {}>({})
   book$ = toObservable(this.book)
 
-  private externalBookList = signal<Book[] | []>([])
-  externalBookList$ = toObservable(this.externalBookList)
-
-  urls = {
-    list: 'api/books',
-    getByISBN: 'api/getByISBN'
-  };
+  url = 'api/books/';
 
   constructor(
     private http: HttpClient,
@@ -30,7 +24,8 @@ export class BooksService {
   ) { }
 
   getBooksFromServer() {
-    lastValueFrom(this.http.get<Book[]>(this.urls.list))
+    // todo add authorization
+    lastValueFrom(this.http.get<Book[]>(this.url))
       .then((list) => {
         return this.updateBooksList(list)
       })
@@ -56,28 +51,6 @@ export class BooksService {
     return this.bookList$
   }
 
-
-  searchByISBN(isbn: string) {
-    return lastValueFrom(this.http.get<Book[]>(`${this.urls.getByISBN}/${isbn}`))
-      .then((response: Book[]) => {
-        this.externalBookList.update(() => response)
-        return response
-      })
-  }
-
-  getExternalBooks() {
-    return this.externalBookList$.pipe(
-      map((bookList: Book[]) => bookList),
-      distinctUntilChanged()
-    )
-  }
-
-  addBookData(book: Book) {
-    this.book.update(() => {
-      return book
-    })
-  }
-
   getCurrentBook() {
     return this.book$
       .pipe(
@@ -86,6 +59,17 @@ export class BooksService {
         }),
         distinctUntilChanged()
       )
+  }
+
+  updateCurrentBook(book: Book) {
+    this.book.update(() => {
+      return book
+    })
+  }
+
+  addNewBook(){
+    console.log(this.book)
+    // this.http.post<Book>(`${this.url}addBookToList`, this.book)
   }
 }
 
