@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { Validators } from '@angular/forms';
@@ -10,11 +10,10 @@ import { BrowserMultiFormatReader } from '@zxing/library';
   selector: 'app-book',
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatInputModule,
     LiveFormComponent
-  ],
+],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss'
 })

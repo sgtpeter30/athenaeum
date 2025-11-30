@@ -8,7 +8,7 @@ import { Book, BooksService } from '@lib/shared';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TranslatePipe } from 'src/shared/pipes';
-import { CommonModule } from '@angular/common';
+
 import { Observable } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ExternalBook } from 'src/shared/models/external-book.model';
@@ -20,16 +20,15 @@ import { ISBNService } from '../isbn-service/isbn.service';
     styleUrl: './merge-data.component.scss',
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CommonModule,
-        FormsModule,
-        MatButtonModule,
-        MatSlideToggleModule,
-        MatRadioModule,
-        MergeDataInfoComponent,
-        MergeDataFormComponent,
-        MatProgressSpinnerModule,
-        TranslatePipe
-    ]
+    FormsModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatRadioModule,
+    MergeDataInfoComponent,
+    MergeDataFormComponent,
+    MatProgressSpinnerModule,
+    TranslatePipe
+]
 })
 export class MergeDataComponent {
   @ViewChild('mergeForm') mergeForm!: any;

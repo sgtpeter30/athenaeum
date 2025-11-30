@@ -6,19 +6,18 @@ import { MatTableModule } from '@angular/material/table';
 import { Book, ExternalBook } from 'src/shared/models';
 import { TranslationService } from 'src/shared/services';
 import { ISBNService } from '../../isbn-service/isbn.service';
-import { CommonModule } from '@angular/common';
+
 import { isEmpty } from 'lodash';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-merge-data-info',
   imports: [
-    CommonModule,
     FormsModule,
     MatTableModule,
     MatRadioModule,
     MatProgressSpinnerModule
-  ],
+],
   templateUrl: './merge-data-info.component.html',
   styleUrl: './merge-data-info.component.scss'
 })
