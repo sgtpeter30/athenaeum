@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Book, ExternalBook } from '@lib/shared';
+import { Book, emptyBook, ExternalBook } from '@lib/shared';
 import { isEmpty } from 'lodash';
 import { Observable, distinctUntilChanged, lastValueFrom, map } from 'rxjs';
 
@@ -51,14 +51,19 @@ export class BooksService {
     return this.bookList$
   }
 
-  getCurrentBook() {
-    return this.book$
-      .pipe(
-        map((book) => {
-          return book
-        }),
-        distinctUntilChanged()
-      )
+  getCurrentBook(): Book {
+    if(isEmpty(this.book())){
+      console.warn("Book doesn't exists!")
+      return {...emptyBook, isbn: 9788367949422}
+    }
+    return this.book() as Book
+    // return this.book$
+    //   .pipe(
+    //     map((book) => {
+    //       return book
+    //     }),
+    //     distinctUntilChanged()
+    //   )
   }
 
   updateCurrentBook(book: Book) {

@@ -1,7 +1,7 @@
 export interface Book
 {
   _id : number | null,
-  isbn : Number,
+  isbn : number,
   mode?: 'new' | 'edit' | 'read',
   title : string,
   author : String,

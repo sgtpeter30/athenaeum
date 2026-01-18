@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../models/user.model';
+import { CreatingUser, User } from '../../models/user.model';
 import { catchError, lastValueFrom, of, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BooksService } from '../items/books.service';
@@ -62,7 +62,7 @@ export class UserService {
     document.cookie = `goodCookie=${JSON.stringify(token)};expires=${expireDate};Strict;`
   }
 
-  createUser(data: any) {
+  createUser(data: CreatingUser) {
     const authData: User = {
       login: data.login,
       password: data.password

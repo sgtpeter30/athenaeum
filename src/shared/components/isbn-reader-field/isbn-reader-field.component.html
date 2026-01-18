@@ -1,14 +1,14 @@
-<form [formGroup]="formName">
-  <mat-form-field subscriptSizing="dynamic">
-    <mat-label>{{field.label}}</mat-label>
-    <input matInput [formControlName]="field.name" [type]="field.type">
-    <mat-error>{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-</form>
-<button mat-fab color="primary" (click)="getISBN()">
+<mat-form-field subscriptSizing="dynamic">
+  <mat-label>{{control.label}}</mat-label>
+  <input matInput [field]="field" type="text">
+  <mat-error>{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
+<button type="button" mat-fab color="primary" (click)="getISBN()">
   <mat-icon>photo_camera</mat-icon>
 </button>
-<button mat-fab color="primary" (click)="findByISBN()">
+
+<button type="button" mat-fab color="primary" (click)="findByISBN()">
   <mat-icon>cloud_download</mat-icon>
 </button>
 

@@ -1,3 +1,1 @@
-export * from './live-form/index';
-export * from './field-components';
-export * from './common-components';
+export * from './isbn-reader-field/isbn-reader-field.component';
